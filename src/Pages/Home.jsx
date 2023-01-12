@@ -79,16 +79,23 @@ class Home extends React.Component {
                   {
                     price,
                     title,
-                    thumbnail },
-                  index,
+                    thumbnail,
+                    id },
                 ) => (
-                  <Products
-                    data-testid="product"
-                    key={ index }
-                    price={ price }
-                    title={ title }
-                    thumbnail={ thumbnail }
-                  />
+                  <Link
+                    key={ title }
+                    to={{ pathname:`/Product/${id}`, id={ id } }}
+                    id={ id }
+                    handleCategoriesProducts={ this.handleCategoriesProducts }
+                  >
+                    <Products
+                      data-testid="product"
+                      key={ id }
+                      price={ price }
+                      title={ title }
+                      thumbnail={ thumbnail }
+                    />
+                  </Link>
                 ))
             ) : <h3>Nenhum produto foi encontrado</h3> }
         </div>
