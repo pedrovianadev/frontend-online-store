@@ -1,13 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import {
+  getProductsFromCategoryAndQuery, getCategories, getProductFromQuery,
+} from '../services/api';
 import Products from '../Components/Products';
+import Category from '../Components/Category';
 
 class Home extends React.Component {
   state = {
     query: '',
     results: {},
+    categories: [],
   };
+
+  componentDidMount() {
+    this.handleCategories();
+  }
 
   handleSearchText = ({ target }) => {
     this.setState({ query: target.value });
@@ -15,12 +23,24 @@ class Home extends React.Component {
 
   handleSearch = async () => {
     const { query } = this.state;
-    const productData = await getProductsFromCategoryAndQuery(query);
+    const productData = await getProductFromQuery(query);
+    this.setState({ results: productData.results });
+  };
+
+  handleCategories = async () => {
+    const fetch = await getCategories();
+    this.setState({
+      categories: fetch,
+    });
+  };
+
+  handleCategoriesProducts = async (id) => {
+    const productData = await getProductsFromCategoryAndQuery(id);
     this.setState({ results: productData.results });
   };
 
   render() {
-    const { results } = this.state;
+    const { results, categories } = this.state;
     return (
       <section>
         <div>
@@ -47,6 +67,10 @@ class Home extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
         </div>
+        <Category
+          categories={ categories }
+          handleCategoriesProducts={ this.handleCategoriesProducts }
+        />
         <div>
           {results.length > 0
             ? (
