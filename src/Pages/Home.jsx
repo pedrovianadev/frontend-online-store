@@ -80,17 +80,15 @@ class Home extends React.Component {
                     price,
                     title,
                     thumbnail,
-                    id },
+                    id }, index
                 ) => (
                   <Link
-                    key={ title }
-                    to={{ pathname:`/Product/${id}`, id={ id } }}
-                    id={ id }
-                    handleCategoriesProducts={ this.handleCategoriesProducts }
+                    key={ index }
+                    to={ `/Product/${id}` }
                   >
                     <Products
                       data-testid="product"
-                      key={ id }
+                      key={ index }
                       price={ price }
                       title={ title }
                       thumbnail={ thumbnail }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import { getProductById } from '../services/api'
+
 
 class ProductInfo extends Component {
   state = {
@@ -7,24 +9,34 @@ class ProductInfo extends Component {
   };
 
   async componentDidMount() {
-    const { handleCategoriesProducts, id } = this.props;
-    const fetch = handleCategoriesProducts(id);
+    const { Product: productId } = this.props.match.params;
+    const fetch = await getProductById(productId);
     this.setState({
       data: fetch,
     });
-    return fetch;
   }
 
   render() {
     const { data } = this.state;
-    const { id } = this.props;
     return (
-      <>
-        { console.log(id) }
+      <section>
+        { console.log(data) }
+        { data
+            ? (
+        <>
         <div>
-          Oi.
-        </div>
-      </>
+              <div>
+                <h3>
+                  {data.title} <br></br> R${data.price}
+                </h3>
+              </div>
+              <div>
+                <img src={data.thumbnail} alt="Product " />
+              </div>
+            </div>
+              </>
+        ) : ''}
+      </section>
     );
   }
 }
@@ -32,6 +44,5 @@ class ProductInfo extends Component {
 export default ProductInfo;
 
 ProductInfo.propTypes = {
-  id: PropTypes.string.isRequired,
-  handleCategoriesProducts: PropTypes.func.isRequired,
+  match: PropTypes.shape().isRequired,
 };
