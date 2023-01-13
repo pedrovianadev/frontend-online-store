@@ -76,19 +76,24 @@ class Home extends React.Component {
             ? (
               results
                 .map(({ price, title, thumbnail, id }, index) => (
-                  <Link
-                    key={ index }
-                    to={ `/Product/${id}` }
-                    data-testid="product-detail-link"
-                  >
-                    <Products
-                      data-testid="product"
+                  <div key={ index }>
+                    <Link
                       key={ index }
-                      price={ price }
-                      title={ title }
-                      thumbnail={ thumbnail }
-                    />
-                  </Link>
+                      to={ `/Product/${id}` }
+                      data-testid="product-detail-link"
+                    >
+                      <Products
+                        data-testid="product"
+                        key={ index }
+                        price={ price }
+                        title={ title }
+                        thumbnail={ thumbnail }
+                      />
+                    </Link>
+                    <button type="button" data-testid="product-add-to-cart">
+                      Adicionar ao carrinho
+                    </button>
+                  </div>
                 ))
             ) : <h3>Nenhum produto foi encontrado</h3>}
         </div>

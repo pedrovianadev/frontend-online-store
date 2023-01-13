@@ -26,7 +26,7 @@ class ProductInfo extends Component {
           ? (
             <div>
               <div>
-                <Link to="/Cart" data-testid="shopping-cart-button">
+                <Link to="/Cart">
                   Carrinho de compras
                 </Link>
               </div>
@@ -43,11 +43,9 @@ class ProductInfo extends Component {
               <div data-testid="product-detail-image">
                 <img src={ data.thumbnail } alt="Product " />
               </div>
-              <div data-testid="shopping-cart-button">
-                <p>Atributo</p>
-              </div>
-              <button type="button" data-testid="product-add-to-cart">
-                Adiciona ao carrinho
+              <p>Atributo</p>
+              <button type="button">
+                Adicionar ao carrinho
               </button>
             </div>
           ) : ''}
