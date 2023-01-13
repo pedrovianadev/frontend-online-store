@@ -14,6 +14,9 @@ class Products extends React.Component {
           R$
           {price}
         </p>
+        <button type="button" data-testid="product-add-to-cart">
+          Adiciona ao carrinho
+        </button>
       </div>
     );
   }

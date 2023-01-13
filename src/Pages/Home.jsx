@@ -75,16 +75,11 @@ class Home extends React.Component {
           {results.length > 0
             ? (
               results
-                .map((
-                  {
-                    price,
-                    title,
-                    thumbnail,
-                    id }, index
-                ) => (
+                .map(({ price, title, thumbnail, id }, index) => (
                   <Link
                     key={ index }
                     to={ `/Product/${id}` }
+                    data-testid="product-detail-link"
                   >
                     <Products
                       data-testid="product"
@@ -95,7 +90,7 @@ class Home extends React.Component {
                     />
                   </Link>
                 ))
-            ) : <h3>Nenhum produto foi encontrado</h3> }
+            ) : <h3>Nenhum produto foi encontrado</h3>}
         </div>
       </section>
     );
