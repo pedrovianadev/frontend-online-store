@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
+import BttnCartInfoPage from '../Components/BttnCartInfoPage';
 
 class ProductInfo extends Component {
   state = {
@@ -26,7 +27,10 @@ class ProductInfo extends Component {
           ? (
             <div>
               <div>
-                <Link to="/Cart">
+                <Link
+                  to="/Cart"
+                  data-testid="shopping-cart-button"
+                >
                   Carrinho de compras
                 </Link>
               </div>
@@ -44,9 +48,10 @@ class ProductInfo extends Component {
                 <img src={ data.thumbnail } alt="Product " />
               </div>
               <p>Atributo</p>
-              <button type="button">
-                Adicionar ao carrinho
-              </button>
+              <BttnCartInfoPage
+                price={ data.price }
+                title={ data.title }
+              />
             </div>
           ) : ''}
       </section>

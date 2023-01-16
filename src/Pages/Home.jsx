@@ -5,6 +5,7 @@ import {
 } from '../services/api';
 import Products from '../Components/Products';
 import Category from '../Components/Category';
+import BttnCart from '../Components/BttnCart';
 
 class Home extends React.Component {
   state = {
@@ -60,7 +61,11 @@ class Home extends React.Component {
           >
             Pesquisar
           </button>
-          <Link to="/Cart" data-testid="shopping-cart-button">
+          <Link
+            to="/Cart"
+            data-testid="shopping-cart-button"
+            { ...this.state }
+          >
             Carrinho de compras
           </Link>
           <p data-testid="home-initial-message">
@@ -90,9 +95,10 @@ class Home extends React.Component {
                         thumbnail={ thumbnail }
                       />
                     </Link>
-                    <button type="button" data-testid="product-add-to-cart">
-                      Adicionar ao carrinho
-                    </button>
+                    <BttnCart
+                      price={ price }
+                      title={ title }
+                    />
                   </div>
                 ))
             ) : <h3>Nenhum produto foi encontrado</h3>}

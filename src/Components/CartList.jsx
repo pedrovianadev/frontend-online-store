@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class CartList extends Component {
-  return (
-    <div>
-
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        produtos adicionados ao carrinho
+      </div>
+    );
+  }
 }
 
 export default CartList;
