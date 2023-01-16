@@ -51,6 +51,7 @@ class ProductInfo extends Component {
               <BttnCartInfoPage
                 price={ data.price }
                 title={ data.title }
+                id={ data.id }
               />
             </div>
           ) : ''}

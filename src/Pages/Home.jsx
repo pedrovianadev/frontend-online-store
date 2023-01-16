@@ -98,6 +98,7 @@ class Home extends React.Component {
                     <BttnCart
                       price={ price }
                       title={ title }
+                      id={ id }
                     />
                   </div>
                 ))
