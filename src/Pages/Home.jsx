@@ -5,6 +5,7 @@ import {
 } from '../services/api';
 import Products from '../Components/Products';
 import Category from '../Components/Category';
+import BttnCart from '../Components/BttnCart';
 
 class Home extends React.Component {
   state = {
@@ -60,7 +61,11 @@ class Home extends React.Component {
           >
             Pesquisar
           </button>
-          <Link to="/Cart" data-testid="shopping-cart-button">
+          <Link
+            to="/Cart"
+            data-testid="shopping-cart-button"
+            { ...this.state }
+          >
             Carrinho de compras
           </Link>
           <p data-testid="home-initial-message">
@@ -75,22 +80,29 @@ class Home extends React.Component {
           {results.length > 0
             ? (
               results
-                .map((
-                  {
-                    price,
-                    title,
-                    thumbnail },
-                  index,
-                ) => (
-                  <Products
-                    data-testid="product"
-                    key={ index }
-                    price={ price }
-                    title={ title }
-                    thumbnail={ thumbnail }
-                  />
+                .map(({ price, title, thumbnail, id }, index) => (
+                  <div key={ index }>
+                    <Link
+                      key={ index }
+                      to={ `/Product/${id}` }
+                      data-testid="product-detail-link"
+                    >
+                      <Products
+                        data-testid="product"
+                        key={ index }
+                        price={ price }
+                        title={ title }
+                        thumbnail={ thumbnail }
+                      />
+                    </Link>
+                    <BttnCart
+                      price={ price }
+                      title={ title }
+                      id={ id }
+                    />
+                  </div>
                 ))
-            ) : <h3>Nenhum produto foi encontrado</h3> }
+            ) : <h3>Nenhum produto foi encontrado</h3>}
         </div>
       </section>
     );
