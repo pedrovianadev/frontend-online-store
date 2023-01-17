@@ -17,6 +17,8 @@ class Cart extends Component {
     });
   };
 
+  // requisito 10//
+
   remove = ({ target }) => {
     const items = JSON.parse(localStorage.getItem('CART_ITEMS'));
     const filterItems = items.filter((targetId) => targetId.id !== target.id);
@@ -28,8 +30,9 @@ class Cart extends Component {
 
   render() {
     const { carItems } = this.state;
+    // console.log(carItems);//
     return (
-      (carItems.length > 0 ? (
+      (carItems ? (
         carItems.map(({ price, title, id }) => (<CartList
           key={ id }
           id={ id }
