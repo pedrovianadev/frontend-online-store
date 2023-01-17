@@ -17,6 +17,8 @@ class Cart extends Component {
     });
   };
 
+  // requisito 10//
+
   remove = ({ target }) => {
     const items = JSON.parse(localStorage.getItem('CART_ITEMS'));
     const filterItems = items.filter((targetId) => targetId.id !== target.id);
