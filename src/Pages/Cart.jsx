@@ -30,8 +30,9 @@ class Cart extends Component {
 
   render() {
     const { carItems } = this.state;
+    console.log(carItems);
     return (
-      (carItems.length > 0 ? (
+      (carItems ? (
         carItems.map(({ price, title, id }) => (<CartList
           key={ id }
           id={ id }
