@@ -30,7 +30,7 @@ class Cart extends Component {
 
   render() {
     const { carItems } = this.state;
-    console.log(carItems);
+    // console.log(carItems);//
     return (
       (carItems ? (
         carItems.map(({ price, title, id }) => (<CartList
